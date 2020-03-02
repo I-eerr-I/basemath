@@ -28,7 +28,7 @@ result = bNUM('FFFF', 16, 4) - result
 
 The result will be check sum:
 ```python
-(F8F0).16
+'(F8F0).16'
 ```
 
 # Consistance:
@@ -52,7 +52,7 @@ You can create **bnum** *(any-base number using bNUM class)* using:
     base   = 2  # or any base you want starting from 2
     bnum   = bNUM(number, base)
     print(bnum)
-    >> (1010).2
+    >> '(1010).2'
 ```
 1. String representation of your any-base number:
 ```python
@@ -60,7 +60,7 @@ You can create **bnum** *(any-base number using bNUM class)* using:
     base        = 2
     bnum        = bNUM(str_basenum, base)
     print(bnum)
-    >> (1010).2
+    >> '(1010).2'
 ```
 1. List representation of your any-base number:
 ```python
@@ -68,7 +68,7 @@ You can create **bnum** *(any-base number using bNUM class)* using:
     base         = 2
     bnum         = bNUM(list_basenum, base)
     print(bnum)
-    >> (1010).2
+    >> '(1010).2'
 ```
   You cant also pass list of bnums as a value:
 ```python
@@ -76,7 +76,7 @@ You can create **bnum** *(any-base number using bNUM class)* using:
     base  = 2
     bnum  = bNUM(bnums, base)
     print(bnum)
-    >> (1010).2
+    >> '(1010).2'
 ```
 
 As you can mention, the string output of bNUM object useing format ([number]).base: (10).10, (1010).2, (A).16 and etc
@@ -95,27 +95,27 @@ Use length parameter to keep this length of bnum. For example, if you pass numbe
   string = '0001010'
   base   = 2
   bnum   = bNUM(string, base)  print(bnum)
-  >> (1010).2
+  >> '(1010).2'
 ```
 Than, use length parameter to keep this length:
 ```python
   bnum = bNUM(string, base, length=7)
   print(bnum)
-  >> (0001010).2
+  >> '(0001010).2'
 ```
 
 Use length parameter to expand the length of your bnum, filling it with zeros:
 ```python
   bnum = bNUM('1010', 2, length=10)
   print(bnum, len(bnum))
-  >> (0000001010).2, 10
+  >> '(0000001010).2', 10
 ```
 
 If you pass length less than your any-base number, then nothing happens. Length parameter is only working to keep or expand by zeros original length of any-base number:
 ```python
   bnum = bNUM('01010', 2, length=4)
   print(bnum)
-  >> (01010).2
+  >> '(01010).2'
 ```
 
 To remove zeros from bnum use [cutzeros](#cutzeros) method.
@@ -128,7 +128,7 @@ Use this method with your bnum to return new bnum with new or the same length. A
   bnum1 = bNUM('1010', 2)
   bnum2 = bnum1.to_len(10)
   print(bnum2)
-  >> (0000001010).2
+  >> '(0000001010).2'
 ```
 
 ## cutdown
@@ -166,9 +166,30 @@ The cutdown to length = 2:
   bnum3 = bnum1.cutdown(1) # 42 + 0 = 42; 4 + 2 = 6
   bnum4 = bnum1.cutdown(3) # the same as bnum1
   print(bnum2, bnum3, bnum4)
-  >> (24).10, (6).10, (420).10
+  >> '(24).10', '(6).10', '(420).10'
 ```
 
 ## math operations
 
-You can find sum, multiplication, substraction of two bnums:
+You can find sum, multiplication, substraction of two bnums using standard python syntax:
+```python
+ bnum1 = bNUM('1010', 2) # 10
+ bnum2 = bNUM('10', 2)   # 2
+ print(bnum1 + bnum2)    # output = (1100).2  = 12
+ print(bnum1 * bnum2)    # output = (10100).2 = 20
+ print(bnum1 - bnum2)    # output = (1000).2  = 8
+```
+
+Pay attention, if the minued is less then subtrahend (negative result of substraction), than the return will be decimal number of type int (not a bNUM):
+```python
+ print(bnum2 - bnum1) # output = -8
+ ```
+ 
+ You can carry out some bitwise operations like XOR, bitwise OR and bitwise AND (or just bitwise multiplication):
+ ```python
+  bnum1 = bNUM('1010', 2) # 10
+  bnum2 = bNUM('10', 2)   # 2
+  print(bnum1 ^ bnum2)      # 1010 XOR 10 = 1000 = 8
+  print(bnum1 | bnum2)      # 1010 OR  10 = 1010 = 10
+  print(bnum1 & bnum2)      # 1010 AND 10 = 1000 = 2
+```
