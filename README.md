@@ -80,6 +80,13 @@ You can create **bnum** *(any-base number using bNUM class)* using:
 ```
 
 As you can mention, the string output of bNUM object useing format ([number]).base: (10).10, (1010).2, (A).16 and etc
+bNUM uses local list ORDER to represent and operate with any element of any base. ORDER list consists of strings that are representations of any-base digits:
+ORDER = ['0', '1', '2', '3', '4', ..., 'A', 'B', 'C', ..., 'a', 'b', 'c', ..., !1A, !1B, !1C, ..........]
+**THE ELEMENTS ARE CASE-SENSETIVE! SO YOU SHOULD PASS INTO bNUM STRINGS AND LISTS KNOWING THAT, E.G. 'A' IS DIFFERENT THAN 'a':
+'A' = 10, 'B' = 11, ..., 'Z' = 35, 'a' = 36, 'b' = 37, ..., 'z' = 61, '!1A' = 62, '!1B' = 63, ...***
+
+As you can seed, starting after 'z' it goes '!1A' - in syntax to use next other any-base digits. Than, it's coming as ![period of repeating number]letter
+The '!' sign is useing for indication about single digit. After this sign goes number to indicate the amount of period repearing of the same type of representation, like 'a', 'b', 'c'... Then, it goes letter sign. 
 
 ### The attributes of bNUM object:
  * **string** - string representation of number: bNUM(10, 2).string -> '1010'
@@ -193,3 +200,5 @@ Pay attention, if the minued is less then subtrahend (negative result of substra
   print(bnum1 | bnum2)      # 1010 OR  10 = 1010 = 10
   print(bnum1 & bnum2)      # 1010 AND 10 = 1000 = 2
 ```
+
+## 
