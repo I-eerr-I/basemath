@@ -78,6 +78,15 @@ You can create **bnum** *(any-base number using bNUM class)* using:
     print(bnum)
     >> (1010).2
 ```
+
+As you can mention, the string output of bNUM object useing format ([number]).base: (10).10, (1010).2, (A).16 and etc
+
+### The attributes of bNUM object:
+ * **string** - string representation of number: bNUM(10, 2).string -> '1010'
+ * **array**  - array representation of number: bNUM(10, 2).array -> ['1', '0', '1', '0']
+ * **base**   - base of number: bNUM(10, 2).base -> 2
+ * **decimal** - decimal number representation: bNUM(10, 2).decimal -> 10
+
 ## length parameter
 > length=None (int)
 
