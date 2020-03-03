@@ -7,7 +7,7 @@ setuptools.setup(
     name                          = "basemath",
     version                       = "1.0.2",
     license                       = "MIT",
-    author                        = "eerne/m13kj (Ernest)",
+    author                        = "Ernest Yoffe",
     author_email                  = "infinitumco666@gmail.com",
     description                   = "A small library to work with numbers of any base",
     long_description              = long_description,
