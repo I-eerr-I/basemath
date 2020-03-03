@@ -321,6 +321,8 @@ class bNUM:
             index = slice(start, stop, step)
             return index
         else:
+            if index < 0:
+                return abs(index + 1)    
             return len(self) - index - 1
 
     def __getitem__(self, index, revert=True):
