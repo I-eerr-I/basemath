@@ -52,6 +52,7 @@ You can create **bnum** *(any-base number using bNUM class)* using:
     base   = 2  # or any base you want starting from 2
     bnum   = bNUM(number, base)
     print(bnum)
+    
     >> '(1010).2'
 ```
 1. String representation of your any-base number:
@@ -60,6 +61,7 @@ You can create **bnum** *(any-base number using bNUM class)* using:
     base        = 2
     bnum        = bNUM(str_basenum, base)
     print(bnum)
+    
     >> '(1010).2'
 ```
 1. List representation of your any-base number:
@@ -68,6 +70,7 @@ You can create **bnum** *(any-base number using bNUM class)* using:
     base         = 2
     bnum         = bNUM(list_basenum, base)
     print(bnum)
+    
     >> '(1010).2'
 ```
   You cant also pass list of bnums as a value:
@@ -76,17 +79,32 @@ You can create **bnum** *(any-base number using bNUM class)* using:
     base  = 2
     bnum  = bNUM(bnums, base)
     print(bnum)
+    
     >> '(1010).2'
 ```
 
-As you can mention, the string output of bNUM object useing format ([number]).base: (10).10, (1010).2, (A).16 and etc
+As you can mention, the string output of bNUM object useing format (number).base: (10).10, (1010).2, (A).16 and etc
 bNUM uses local list ORDER to represent and operate with any element of any base. ORDER list consists of strings that are representations of any-base digits:
 ORDER = ['0', '1', '2', '3', '4', ..., 'A', 'B', 'C', ..., 'a', 'b', 'c', ..., !1A, !1B, !1C, ..........]
-**THE ELEMENTS ARE CASE-SENSETIVE! SO YOU SHOULD PASS INTO bNUM STRINGS AND LISTS KNOWING THAT, E.G. 'A' IS DIFFERENT THAN 'a':
+**THE ELEMENTS ARE CASE-SENSETIVE! SO YOU SHOULD PASS STINGS AND LISTS INTO bNUM KNOWING THAT, E.G. 'A' IS DIFFERENT THAN 'a':
 'A' = 10, 'B' = 11, ..., 'Z' = 35, 'a' = 36, 'b' = 37, ..., 'z' = 61, '!1A' = 62, '!1B' = 63, ...***
 
-As you can seed, starting after 'z' it goes '!1A' - in syntax to use next other any-base digits. Than, it's coming as ![period of repeating number]letter
-The '!' sign is useing for indication about single digit. After this sign goes number to indicate the amount of period repearing of the same type of representation, like 'a', 'b', 'c'... Then, it goes letter sign. 
+As you can see, starting after 'z' it goes '!1A' - is the syntax to use next other any-base digits.It goes as ![period of repeating number]letter
+There are '!' signs to indicate the start of the new any-base digit that is out of standard range from 0 to 9, from A to Z and from a to z:
+ | String representations | Decimals |
+ | --- | --- |
+ | 0 - 9 | 0 - 9 |
+ | A - Z | 10 - 35 |
+ | a - z | 36 - 61 |
+ | !1A - !1Z | 62 - 87 |
+ | !1a - !1z | 88 - 113 |
+ | !2A - !2Z | 114 - 139 |
+ | !2a - !2z | 140 - 165 |
+ | ... | ... |
+ | !1000A - !1000Z | 52010 - 52035 |
+ | !1000a - !1000z | 52036 - 52061 |
+ 
+ So you can use up to 52061 base numbers.
 
 ### The attributes of bNUM object:
  * **string** - string representation of number: bNUM(10, 2).string -> '1010'
@@ -102,12 +120,14 @@ Use length parameter to keep this length of bnum. For example, if you pass numbe
   string = '0001010'
   base   = 2
   bnum   = bNUM(string, base)  print(bnum)
+  
   >> '(1010).2'
 ```
 Than, use length parameter to keep this length:
 ```python
   bnum = bNUM(string, base, length=7)
   print(bnum)
+  
   >> '(0001010).2'
 ```
 
@@ -115,6 +135,7 @@ Use length parameter to expand the length of your bnum, filling it with zeros:
 ```python
   bnum = bNUM('1010', 2, length=10)
   print(bnum, len(bnum))
+  
   >> '(0000001010).2', 10
 ```
 
@@ -122,6 +143,7 @@ If you pass length less than your any-base number, then nothing happens. Length 
 ```python
   bnum = bNUM('01010', 2, length=4)
   print(bnum)
+  
   >> '(01010).2'
 ```
 
@@ -135,6 +157,7 @@ Use this method with your bnum to return new bnum with new or the same length. A
   bnum1 = bNUM('1010', 2)
   bnum2 = bnum1.to_len(10)
   print(bnum2)
+  
   >> '(0000001010).2'
 ```
 
@@ -173,6 +196,7 @@ The cutdown to length = 2:
   bnum3 = bnum1.cutdown(1) # 42 + 0 = 42; 4 + 2 = 6
   bnum4 = bnum1.cutdown(3) # the same as bnum1
   print(bnum2, bnum3, bnum4)
+  
   >> '(24).10', '(6).10', '(420).10'
 ```
 
@@ -196,9 +220,36 @@ Pay attention, if the minued is less then subtrahend (negative result of substra
  ```python
   bnum1 = bNUM('1010', 2) # 10
   bnum2 = bNUM('10', 2)   # 2
-  print(bnum1 ^ bnum2)      # 1010 XOR 10 = 1000 = 8
-  print(bnum1 | bnum2)      # 1010 OR  10 = 1010 = 10
-  print(bnum1 & bnum2)      # 1010 AND 10 = 1000 = 2
+  print(bnum1 ^ bnum2)    # 1010 XOR 10 = 1000 = 8
+  print(bnum1 | bnum2)    # 1010 OR  10 = 1010 = 10
+  print(bnum1 & bnum2)    # 1010 AND 10 = 1000 = 2
 ```
 
-## 
+## other methods
+
+Use your bnums as standard python lists. Use index syntax to get bnum elements of type bNUM. **But, pay attention!** The indices here are not simple: the rank in bnums is left oriented, so are indices. Using indices you passes the power of digit position:
+ 1 0 1 0 - binary number
+ 3 2 1 0 - indices/powers of base
+ 
+ A F F 3 C 1 - hex number
+ 5 4 3 2 1 0 - indices/powers of base
+ 
+```python
+ bnum = bNUM('123456789', 10)
+ print(bnum.array, bnum.string)
+ 
+ >> ['1', '2', '3', '4', '5', '6', '7', '8', '9'], '123456789'
+ 
+ print(bnum[0], type(bnum[0]))
+ 
+ >> (9).10, <class 'bNUM'>
+ 
+ print(bnum[-1])
+ 
+ >> (1).10
+ 
+ for b in bnum:
+  print(b, end=' ')
+ 
+ >> (9).10, (8).10, (7).10, (6).10, (5).10, (4).10, (3).10, (2).10, (1).10
+```
