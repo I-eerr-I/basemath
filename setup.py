@@ -18,7 +18,8 @@ setuptools.setup(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT",
         "Natural Language :: English",
-        "Operating System :: OS Independent",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent"
         ],
     python_requires = ">=3.6",
     )
