@@ -5,7 +5,7 @@ with open('README.md', 'r') as f:
 
 setuptools.setup(
     name                          = "basemath",
-    version                       = "1.0",
+    version                       = "1.0.2",
     license                       = "MIT",
     author                        = "eerne/m13kj (Ernest)",
     author_email                  = "infinitumco666@gmail.com",

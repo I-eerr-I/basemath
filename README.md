@@ -1,6 +1,11 @@
 # basemath
 A small python library to work with numbers of any base
 
+Install it using pip:
+```python
+pip install basemath
+```
+
 If you need to work with hex, bin, oct, any-base numbers, you can use this simple python library. Any-base number - is the number with the base you need to use it.
 Using this library (version 1.0) you can carry out basic operations like: 
 * **plus** 
