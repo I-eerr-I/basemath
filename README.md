@@ -52,7 +52,7 @@ You can create **bnum** *(any-base number using bNUM class)* using:
     base   = 2  # or any base you want starting from 2
     bnum   = bNUM(number, base)
     print(bnum)
-    
+    #
     >> '(1010).2'
 ```
 1. String representation of your any-base number:
@@ -73,7 +73,7 @@ You can create **bnum** *(any-base number using bNUM class)* using:
     
     >> '(1010).2'
 ```
-  You cant also pass list of bnums as a value:
+  You can also pass list of bnums as a value:
 ```python
     bnums = [bNUM('10', 2), bNUM('10', 2)]
     base  = 2
@@ -252,4 +252,31 @@ Use your bnums as standard python lists. Use index syntax to get bnum elements o
   print(b, end=' ')
  
  >> (9).10, (8).10, (7).10, (6).10, (5).10, (4).10, (3).10, (2).10, (1).10
+```
+
+Just think of it like you get item by index using reverted bnum.array.
+Don't forget that you can change single element of your bnum using index syntax.
+```python
+ bnum1 = bNUM('1010', 2)
+ print(bnum1, bnum1.decimal)
+ 
+ >> (1010).2, 10
+ 
+ bnum1[0] = 1
+ print(bnum1, bnum1.decimal)
+ 
+ >> (1011).2, 11
+```
+You can get copy of bNUM object using copy method:
+```python
+ bnum1 = bNUM('1010', 2)
+ bnum2 = bnum1.copy()
+ print(bnum2)
+ 
+ >> (1010).2
+ 
+ bnum1[0] = 1
+ print(bnum1, bnum2)
+ 
+ >> (1011).2, (1010).2
 ```
