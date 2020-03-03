@@ -333,3 +333,23 @@ Use *split(k, length)* method to split bnum by k new bnums with the same length:
  >> [ (AB).16, (CD).16, (EF).16 ]
 ```
 
+# init functions
+There are functions to create bnum objects: *zeros(length, base)* and *ones(length, base)*.
+*zeros* creates bNUM object filled with zeros. *ones* creates bNUM object filled with ones:
+```python
+ bnum0 = zeros(4, 135)
+ print(bnum0)
+ 
+ >> (0000).135
+ 
+ bnum1 = ones(4, 666)
+ print(bnum1)
+ 
+ >> (1111).666
+```
+
+# additional functions
+There functions like de2array, de2str, bnum_sum:
+ * de2array(decimal, base) - creates array of string representations of number of passed base
+ * de2str(decimal, base) - the same as the de2array, but returns string
+ * bnum_sum(bnums) - returns sum of bnums in passed list
