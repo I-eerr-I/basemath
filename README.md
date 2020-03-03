@@ -229,6 +229,16 @@ Pay attention, if the minued is less then subtrahend (negative result of substra
 
 ## other methods
 
+Use *to_base(base)* to get new bNUM object with new base:
+```
+ bnum2  = bNUM('1010', 2)
+ bnum16 = bnum2.to_base(16)
+ bnum10 = bnum16.to_base(10)
+ print(bnum2, bnum16, bnum10)
+ 
+ >> (1010).2, (A).16, (10).10
+```
+
 Use your bnums as standard python lists. Use index syntax to get bnum elements of type bNUM. **But, pay attention!** The indices here are not simple: the rank in bnums is left oriented, so are indices. Using indices you passes the power of digit position:
  1 0 1 0 - binary number
  3 2 1 0 - indices/powers of base
@@ -257,6 +267,7 @@ Use your bnums as standard python lists. Use index syntax to get bnum elements o
 ```
 
 Just think of it like you get item by index using reverted bnum.array.
+Or you can use method *from_end* passing index as in standard array.
 Don't forget that you can change single element of your bnum using index syntax.
 ```python
  bnum1 = bNUM('1010', 2)
@@ -272,12 +283,12 @@ Don't forget that you can change single element of your bnum using index syntax.
 
 Use method insert and append like you use it with python lists.
 
+
 You can get copy of bNUM object using method *copy*:
 ```python
  bnum1 = bNUM('1010', 2)
  bnum2 = bnum1.copy()
- print(bnum2)
- 
+ print(bnum2) 
  >> (1010).2
  
  bnum1[0] = 1
@@ -295,3 +306,30 @@ Or just copy parameters of another bnum to yours using method *copy_here(bnum)*:
  
  >> (FFFF).16
 ```
+
+Fill bnum with any value useing *fill(value)* method (you can pass str or int < 10):
+```python
+ bnum = bNUM('AAA', 16)
+ bnum.fill('F')
+ print(bnum)
+ 
+ >> (FFF).16
+```
+
+Add amount of zeros you want to the lowest ranks using method *shift*:
+```python
+ bnum1 = bNUM('111', 2)
+ bnum2 = bnum1.shift(3)
+ print(bnum1, bnum2)
+ 
+ >> (111).2, (111000).2
+```
+
+Use *split(k, length)* method to split bnum by k new bnums with the same length:
+```python
+ bnum = bNUM('ABCDEF', 16)
+ print(bnum.split(3, 2))
+ 
+ >> [ (AB).16, (CD).16, (EF).16 ]
+```
+
