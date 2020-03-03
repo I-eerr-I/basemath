@@ -200,6 +200,8 @@ The cutdown to length = 2:
   >> '(24).10', '(6).10', '(420).10'
 ```
 
+You can pass int cut parameter creating new bNUM to use cutdown operation on created bnum.
+
 ## math operations
 
 You can find sum, multiplication, substraction of two bnums using standard python syntax:
@@ -267,7 +269,10 @@ Don't forget that you can change single element of your bnum using index syntax.
  
  >> (1011).2, 11
 ```
-You can get copy of bNUM object using copy method:
+
+Use method insert and append like you use it with python lists.
+
+You can get copy of bNUM object using method *copy*:
 ```python
  bnum1 = bNUM('1010', 2)
  bnum2 = bnum1.copy()
@@ -279,4 +284,14 @@ You can get copy of bNUM object using copy method:
  print(bnum1, bnum2)
  
  >> (1011).2, (1010).2
+```
+
+Or just copy parameters of another bnum to yours using method *copy_here(bnum)*:
+```python
+ bnum1 = bNUM('1010', 2)
+ bnum2 = bNUM('FFFF', 16)
+ bnum1.copy_here(bnum2)
+ print(bnum1)
+ 
+ >> (FFFF).16
 ```
